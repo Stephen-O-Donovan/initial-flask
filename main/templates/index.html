@@ -1,0 +1,33 @@
+<!-- 
+    HTML is pretty much the same except:
+
+        - Uses the Jinja2 template engine
+        - Variables are shown by using double curly braces- note the spaces!
+        - Can use control statements (like if-else) with curly braces and %
+        - Use the extends and block commands to reuse same HTML (see base.html)
+-->
+
+<!-- The html file it will be inserted into-->
+{% extends "base.html" %} 
+
+<!-- Use the block command and a unique name-->
+{% block content %}
+    <h1>Hello {{ user.username }}</h1>
+
+    <!--Simple for loop example-->
+    <h2>Tasks directly input</h2>
+    {% for task in tasks %}
+    <div><p>{{ task.name }} : {{ task.due_date }}</p></div>
+    {% endfor %}
+
+    <h2>Users from database</h2>
+    {% for user_db in users_db %}
+    <div><p>{{ user_db.Name }} : {{ user_db.Password }}</p></div>
+    {% endfor %}
+
+    <h2>Tasks from database</h2>
+    {% for task_db in tasks_db %}
+    <div><p>{{ task_db.task_name }} : {{ task_db.due_date }} : {{ task_db.assigned_to }}</p></div>
+    {% endfor %}
+
+{% endblock %}

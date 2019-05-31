@@ -1,0 +1,84 @@
+
+<!-- 
+    form is the LoginForm object sent by forms.py
+    use novalidate to skip form validation, already done on the python side
+    Use hidden_tag() along with the defined SECRET_KEY to prevent CSRF attacks
+
+    No need to render the fields, will be done automatically
+    Use the label attribute to display name of field
+    use the () after field name to display the actual field, can pass attributes 
+        as arguments here, including CSS and IDs
+    Display errors in the validation with the errors property
+
+-->
+
+{% extends "base.html" %}}
+
+{% block content %}
+
+    <h1>Sign In</h1>
+
+    <div class="container">
+ 
+        <form class="form-signin" action="" method="post" role="form" novalidate>
+            {{ form.hidden_tag() }}
+            <h2 class="form-signin-heading">Please Sign Up </h2>
+
+            {{ form.username.label }}
+            {{ form.username(type="email", _name="username", class_="form-control", placeholder="Email address") }}
+
+            <!--display any errors-->
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <!--display the password label and field-->
+            {{ form.password.label }}
+            {{ form.password(type="password", _name="password", class_="form-control", placeholder="Password" ) }}
+
+            <!--display any errors-->
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            {{ form.remember_me( _name="remember") }}
+            {{ form.remember_me.label }}
+
+            {{ form.submit(_name="register_button", id="register_button", class_="btn btn-lg btn-primary btn-block", type="button") }}
+        </form>
+     
+    </div>
+<!--
+    <form action="" method="POST" novalidate>
+    {{ form.hidden_tag() }}
+        <p>
+           
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+
+           
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+           
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+
+         
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.remember_me() }}
+            {{ form.remember_me.label }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+    -->
+
+{% endblock %}
